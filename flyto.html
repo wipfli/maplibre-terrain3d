@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Fly to a location</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src='maplibre-gl-dev.js'></script>
+    <link rel='stylesheet' href='maplibre-gl.css' />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <style>
+        .fly {
+            display: block;
+            position: relative;
+            margin: 5px auto;
+            width: 50%;
+            height: 40px;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            font-size: 12px;
+            text-align: center;
+            color: #fff;
+            background: #ee8a65;
+        }
+    </style>
+    <div id="map"></div>
+    <br />
+    <button id="flyToA" class="fly">Fly to A</button>
+    <button id="flyToB" class="fly">Fly to B</button>
+    <script>
+        var A = [7.96148, 46.08645];
+        var B = [7.99843, 46.75603];
+        var map = window.map = new maplibregl.Map({
+            container: 'map',
+            zoom: 14.85,
+            center: A,
+            pitch: 65,
+            hash: true,
+            style: 'https://vectortiles.geo.admin.ch/styles/ch.swisstopo.leichte-basiskarte.vt/style.json',
+            maxZoom: 18,
+            maxPitch: 85
+        });
+
+        map.on('load', () => {
+            map.addSource('terrain', {
+                'type': 'raster-dem',
+                'tiles': ['https://vtc-cdn.maptoolkit.net/terrainrgb/{z}/{x}/{y}.webp'],
+                'encoding': 'mapbox',
+                'maxzoom': 14,
+                'minzoom': 4
+            });
+            map.addTerrain('terrain', { exaggeration: 0.33 });
+        });
+
+        map.on('click', e => {
+            new maplibregl.Marker().setLngLat(e.lngLat).addTo(map);
+        });
+
+        map.addControl(new maplibregl.NavigationControl());
+
+        document.getElementById('flyToA').addEventListener('click', function () {
+            map.flyTo({
+                curve: 1,
+                speed: 0.2,
+                center: A,
+                essential: true
+            });
+        });
+        document.getElementById('flyToB').addEventListener('click', function () {
+            map.flyTo({
+                curve: 1,
+                speed: 0.2,
+                center: B,
+                essential: true
+            });
+        });
+    </script>
+
+</body>
+
+</html>
