@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MapLibre GL JS Terrain 3D</title>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel='stylesheet' href='maplibre-gl.css' />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body,
+        #map {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='map'></div>
+
+    <script src='maplibre-gl-dev.js'></script>
+    <script>
+
+        var style = {
+            "version": 8,
+            "sources": {
+                "raster-tiles": {
+                    "type": "raster",
+                    "tiles": [
+                        "https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    ],
+                    "tileSize": 256,
+                },
+                "demotiles": {
+                    "url": "https://demotiles.maplibre.org/tiles/tiles.json",
+                    "type": "vector"
+                }
+            },
+            "layers": [
+                {
+                    "id": "simple-tiles",
+                    "type": "raster",
+                    "source": "raster-tiles",
+                    "minzoom": 0,
+                    "maxzoom": 22
+                },
+                {
+                    "id": "a-vector-layer",
+                    "type": "line",
+                    "source": "demotiles",
+                    "source-layer": "geolines"
+                }
+            ]
+        };
+
+        var map = window.map = new maplibregl.Map({
+            container: 'map',
+            zoom: 12.5,
+            center: [8.26163, 46.70503],
+            hash: true,
+            style: style,
+            maxZoom: 18,
+            maxPitch: 85
+        });
+
+        map.on('load', () => {
+            map.addSource('terrain', {
+                'type': 'raster-dem',
+                'tiles': ['https://vtc-cdn.maptoolkit.net/terrainrgb/{z}/{x}/{y}.webp'],
+                'encoding': 'mapbox',
+                'maxzoom': 14,
+                'minzoom': 4
+            });
+            map.addTerrain('terrain', { exaggeration: 0.33 });
+        });
+
+        map.on('click', e => {
+            new maplibregl.Marker().setLngLat(e.lngLat).addTo(map);
+        });
+
+        map.addControl(new maplibregl.NavigationControl());
+
+    </script>
+</body>
+
+</html>
+
+aws s3api get-object --bucket planetiler --request-payer requester --key switzerland.mbtiles switzerland.mbtiles
