@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <title>Fly to a location</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-    <script src='maplibre-gl-dev.js'></script>
-    <link rel='stylesheet' href='maplibre-gl.css' />
+    <script src='https://unpkg.com/maplibre-gl@2.2.0-pre.3/dist/maplibre-gl.js'></script>
+    <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@2.2.0-pre.3/dist/maplibre-gl.css' />
     <style>
         body {
             margin: 0;
@@ -65,7 +65,7 @@
                 'maxzoom': 14,
                 'minzoom': 4
             });
-            map.addTerrain('terrain', { exaggeration: 0.33 });
+            map.setTerrain({source: 'terrain', exaggeration: 0.33 });
         });
 
         map.on('click', e => {

@@ -5,7 +5,7 @@
     <title>MapLibre GL JS Terrain 3D</title>
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel='stylesheet' href='maplibre-gl.css' />
+    <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@2.2.0-pre.3/dist/maplibre-gl.css' />
     <style>
         body {
             margin: 0;
@@ -23,7 +23,7 @@
 <body>
     <div id='map'></div>
 
-    <script src='maplibre-gl-dev.js'></script>
+    <script src='https://unpkg.com/maplibre-gl@2.2.0-pre.3/dist/maplibre-gl.js'></script>
     <script>
 
         var style = {
@@ -76,7 +76,7 @@
                 'maxzoom': 14,
                 'minzoom': 4
             });
-            map.addTerrain('terrain', { exaggeration: 0.33 });
+            map.setTerrain({source: 'terrain', exaggeration: 0.33 });
         });
 
         map.on('click', e => {
@@ -89,5 +89,3 @@
 </body>
 
 </html>
-
-aws s3api get-object --bucket planetiler --request-payer requester --key switzerland.mbtiles switzerland.mbtiles
