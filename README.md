@@ -1,12 +1,15 @@
 # maplibre-terrain3d
-Demo of the upcoming MapLibre GL JS Terrain 3D feature
+Demo of the ~~upcoming~~ released MapLibre GL JS Terrain 3D feature
 
 Your feedback is welcome at https://github.com/maplibre/maplibre-gl-js/pull/1022
+
+Live [Demo Swisstopo Imagery](https://wipfli.github.io/maplibre-terrain3d/#11.49/46.4444/8.0585/10.4/66):
+
+[<img src="swisstopo-imagery.png" width=650>](https://wipfli.github.io/maplibre-terrain3d/swisstopo-imagery)
 
 Live [Demo](https://wipfli.github.io/maplibre-terrain3d/#11.49/46.4444/8.0585/10.4/66):
 
 [<img src="demo.png" width=650>](https://wipfli.github.io/maplibre-terrain3d/#11.49/46.4444/8.0585/10.4/66)
-
 
 Live [Demo Swisstopo](https://wipfli.github.io/maplibre-terrain3d/swisstopo.html):
 
@@ -15,3 +18,4 @@ Live [Demo Swisstopo](https://wipfli.github.io/maplibre-terrain3d/swisstopo.html
 [Fly to Demo](https://wipfli.github.io/maplibre-terrain3d/flyto.html)
 
 [OSM Raster](https://wipfli.github.io/maplibre-terrain3d/osm-raster.html)
+

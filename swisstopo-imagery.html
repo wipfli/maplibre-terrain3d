@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>MapLibre GL JS Terrain 3D - Swisstopo</title>
+   <title>MapLibre GL JS Terrain 3D - swisstopo imagery</title>
    <meta charset='utf-8'>
    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
    <link rel='stylesheet' href='dist/maplibre-gl.css' />
@@ -23,7 +23,7 @@ var map = window.map = new maplibregl.Map({
     center: [7.9929, 46.5359],
     pitch: 65,
     hash: true,
-    style: 'https://vectortiles.geo.admin.ch/styles/ch.swisstopo.leichte-basiskarte.vt/style.json',
+    style: 'https://vectortiles.geo.admin.ch/styles/ch.swisstopo.leichte-basiskarte-imagery.vt/style.json',
     maxZoom: 18,
     maxPitch: 85
 });
@@ -38,6 +38,7 @@ map.on('load', () => {
     });
     map.setTerrain({source: 'terrain', exaggeration: 0.33});
 });
+
 
 map.addControl(new maplibregl.NavigationControl());
 
